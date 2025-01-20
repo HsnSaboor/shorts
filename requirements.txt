@@ -1,0 +1,6 @@
+streamlit
+youtube-transcript-api
+yt-dlp
+playwright
+lxml
+youtube-search-python
