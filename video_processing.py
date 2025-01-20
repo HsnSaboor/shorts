@@ -5,7 +5,7 @@ import os
 
 def download_video(video_url: str, output_path: str) -> str:
     try:
-        command = f'pytubepp "{video_url}" -o "{output_path}"'
+        command = f'pytubepp "{video_url}"'
         subprocess.run(command, shell=True, check=True)
         return output_path
     except subprocess.CalledProcessError as e:
