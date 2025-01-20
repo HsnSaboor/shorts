@@ -4,7 +4,7 @@ from typing import List, Dict
 import xml.etree.ElementTree as ET
 from lxml import html, etree
 import random
-from playwright.async_api import async_playwright, PlaywrightTimeoutError
+from playwright.async_api import async_playwright, TimeoutError as PlaywrightTimeoutError
 
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
