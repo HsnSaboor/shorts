@@ -1,31 +1,15 @@
 import subprocess
 from typing import List, Dict, Any
-import yt_dlp
 from youtubesearchpython import Playlist, Channel, ResultMode
-from pytube import YouTube
+import os
 
 def download_video(video_url: str, output_path: str) -> str:
     try:
-        ydl_opts = {
-            'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
-            'outtmpl': output_path,
-            'noplaylist': True,
-        }
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            ydl.download([video_url])
+        command = f'pytubepp "{video_url}" -o "{output_path}"'
+        subprocess.run(command, shell=True, check=True)
         return output_path
-    except yt_dlp.utils.DownloadError as e:
-        print(f"yt-dlp failed: {e}. Falling back to pytube.")
-        return download_video_pytube(video_url, output_path)
-
-def download_video_pytube(video_url: str, output_path: str) -> str:
-    try:
-        yt = YouTube(video_url)
-        stream = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
-        stream.download(output_path)
-        return output_path
-    except Exception as e:
-        print(f"pytube failed: {e}")
+    except subprocess.CalledProcessError as e:
+        print(f"pytubepp failed: {e}")
         return None
 
 def create_clip(input_path: str, start_time: float, end_time: float, output_path: str) -> None:
