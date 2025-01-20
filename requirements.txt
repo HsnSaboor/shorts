@@ -4,4 +4,4 @@ yt-dlp
 playwright
 lxml
 youtube-search-python
-pytube
+pytubepp
