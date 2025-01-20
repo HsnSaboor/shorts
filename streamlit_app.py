@@ -1,10 +1,14 @@
 import asyncio
 import logging
 import streamlit as st
+import os
 from transcript import fetch_transcript, get_significant_transcript_sections
 from heatmap import parse_svg_heatmap, analyze_heatmap_data, extract_video_data, extract_heatmap_svgs
 from video_processing import download_video, create_clips, get_video_ids_from_playlist, get_video_ids_from_channel
 from utils import download_clips_as_zip, save_json, download_clips_with_srt_as_zip
+
+os.system('playwright install')
+
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
